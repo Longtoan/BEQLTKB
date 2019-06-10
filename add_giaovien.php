@@ -7,7 +7,7 @@ header('Access-Control-Allow-Headers: X-Requested-With, content-type, access-con
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body);
 echo json_encode($request_body);
-$tenlop=$_POST['tenlop'];
+
 $query ="insert into giaovien values(
   null,
   '$data->tengv',

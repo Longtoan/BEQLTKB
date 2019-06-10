@@ -1,21 +1,23 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 require 'connectMySql.php';
-
-    class lop{
-        function lop($tenlop,$tenkhoi,$id_khoi){
-            $this->tenlop = $tenlop;
-            $this->tenkhoi = $tenkhoi;  
-            $this->id_khoi = $id_khoi;
-        }
+class lop
+{
+    function lop($id_khoi, $tenkhoi)
+    {
+        $this->id_khoi = $id_khoi;
+        $this->tenkhoi = $tenkhoi;
     }
-    $query ="
-    SELECT class.tenlop, class.id_khoi, khoi.tenkhoi from khoi, class WHERE khoi.id_khoi = class.id_khoi
+}
+$query = "
+select a.id_khoi, tenkhoi
+    from class a, khoi b
+    where a.id_khoi = b.id_khoi
     ";
-    $result =mysqli_query($connect,$query);
-    $mangketqua = array();
-    while($dong =mysqli_fetch_assoc($result)){
-        array_push($mangketqua,new lop($dong['tenlop'],$dong['tenkhoi'],$dong['id_khoi']));
-    }
-        echo json_encode($mangketqua);
-?>
+
+$result = mysqli_query($connect, $query);
+$mangketqua = array();
+while ($dong = mysqli_fetch_assoc($result)) {
+    array_push($mangketqua, new lop($dong['id_khoi'], $dong['tenkhoi']));
+}
+echo json_encode($mangketqua);
