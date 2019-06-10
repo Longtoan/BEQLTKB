@@ -1,20 +1,22 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-require 'connectMySql.php';
-$id_giaovien = mysqli_real_escape_string($connect, $_REQUEST['id_giaovien']);
-$tengv = mysqli_real_escape_string($connect, $_REQUEST['tengv']);
-$ngaysinh = mysqli_real_escape_string($connect, $_REQUEST['ngaysinh']);
-$diachi = mysqli_real_escape_string($connect, $_REQUEST['diachi']);
-$email = mysqli_real_escape_string($connect, $_REQUEST['mail']);
-$chuyenmon = mysqli_real_escape_string($connect, $_REQUEST['id_chuyenmon']);
+require 'connectMySQL.php';
 
-$query = "INSERT INTO giaovien(id_giaovien,tengv,ngaysinh,diachi,mail,id_chuyenmon) VALUES (
-    $id_giaovien, $tengv, $ngaysinh, $diachi, $email, $chuyenmon
-) ";
-
-
-$result = mysqli_query($connect, $query);   
-?>
-
-
-
+header('Content-type: application/json');
+header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Headers: X-Requested-With, content-type, access-control-allow-origin, access-control-allow-methods, access-control-allow-headers');
+$request_body = file_get_contents('php://input');
+$data = json_decode($request_body);
+echo json_encode($request_body);
+$tenlop=$_POST['tenlop'];
+$query ="insert into giaovien values(
+  null,
+  '$data->tengv',
+  '$data->diachi',
+  '$data->email',
+  '$data->id_chuyenmon'
+  )";
+if(mysqli_query($connect,$query)){
+    echo"success";
+}else{
+    echo"error";
+}

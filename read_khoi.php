@@ -5,7 +5,7 @@ require 'connectMySql.php';
     class lop{
         function lop($tenlop,$tenkhoi,$id_khoi){
             $this->tenlop = $tenlop;
-            $this->tenkhoi = $tenkhoi;
+            $this->tenkhoi = $tenkhoi;  
             $this->id_khoi = $id_khoi;
         }
     }

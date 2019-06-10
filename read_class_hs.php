@@ -13,7 +13,7 @@ class lop
 $query = "
     select distinct a.id_lop, b.tenhs, a.tenlop 
     from class a, hocsinh b 
-    where a.id_lop =b.id_lop 
+    where a.id_lop =b.id_lop and a.id_lop=$_GET[id_lop]
     ";
 
 $result = mysqli_query($connect, $query);
@@ -22,4 +22,3 @@ while ($dong = mysqli_fetch_assoc($result)) {
     array_push($mangketqua, new lop($dong['id_lop'], $dong['tenlop'], $dong['tenhs']));
 }
 echo json_encode($mangketqua);
-    
