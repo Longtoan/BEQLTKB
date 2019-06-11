@@ -11,7 +11,7 @@ echo json_encode($request_body);
 $query = "insert into class values(
   null,
   '$data->tenlop',
-  '$data->id_khoi',
+  '$data->id_khoi'
   )";
 if (mysqli_query($connect, $query)) {
     echo "success";

@@ -10,8 +10,8 @@ class lop
     }
 }
 $query = "
-select a.id_khoi, tenkhoi
-    from class a, khoi b
+select DISTINCT a.id_khoi, tenkhoi
+    from class b, khoi a
     where a.id_khoi = b.id_khoi
     ";
 
